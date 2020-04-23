@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.springBoot2001.test.dao.CityMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.springBoot2001.test.model.City" >
+    <id column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="local_city_name" property="localCityName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="INTEGER" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="population" property="population" jdbcType="INTEGER" />
+    <result column="date_modified" property="dateModified" jdbcType="TIMESTAMP" />
+    <result column="date_created" property="dateCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    city_id, city_name, local_city_name, country_id, district, population, date_modified, 
+    date_created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_city
+    where city_id = #{cityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from m_city
+    where city_id = #{cityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.springBoot2001.test.model.City" >
+    insert into m_city (city_id, city_name, local_city_name, 
+      country_id, district, population, 
+      date_modified, date_created)
+    values (#{cityId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, #{localCityName,jdbcType=VARCHAR}, 
+      #{countryId,jdbcType=INTEGER}, #{district,jdbcType=VARCHAR}, #{population,jdbcType=INTEGER}, 
+      #{dateModified,jdbcType=TIMESTAMP}, #{dateCreated,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.springBoot2001.test.model.City" >
+    insert into m_city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="localCityName != null" >
+        local_city_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="population != null" >
+        population,
+      </if>
+      <if test="dateModified != null" >
+        date_modified,
+      </if>
+      <if test="dateCreated != null" >
+        date_created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="localCityName != null" >
+        #{localCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="population != null" >
+        #{population,jdbcType=INTEGER},
+      </if>
+      <if test="dateModified != null" >
+        #{dateModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateCreated != null" >
+        #{dateCreated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.springBoot2001.test.model.City" >
+    update m_city
+    <set >
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="localCityName != null" >
+        local_city_name = #{localCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="population != null" >
+        population = #{population,jdbcType=INTEGER},
+      </if>
+      <if test="dateModified != null" >
+        date_modified = #{dateModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateCreated != null" >
+        date_created = #{dateCreated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where city_id = #{cityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.springBoot2001.test.model.City" >
+    update m_city
+    set city_name = #{cityName,jdbcType=VARCHAR},
+      local_city_name = #{localCityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=INTEGER},
+      district = #{district,jdbcType=VARCHAR},
+      population = #{population,jdbcType=INTEGER},
+      date_modified = #{dateModified,jdbcType=TIMESTAMP},
+      date_created = #{dateCreated,jdbcType=TIMESTAMP}
+    where city_id = #{cityId,jdbcType=INTEGER}
+  </update>
+</mapper>

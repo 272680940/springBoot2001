@@ -34,7 +34,7 @@ public class TestController {
 	}
 
 	/* 读取非全局配置文件的信息 */
-	@Autowired
+	@Autowired//加载配置类
 	private ConfigBean configBean;
 
 	@RequestMapping("/getConfigBeanTest")
