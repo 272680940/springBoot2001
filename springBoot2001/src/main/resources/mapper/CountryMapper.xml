@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hqyj.springBoot2001.test.dao.CountryMapper" >
+<mapper namespace="com.hqyj.springBoot2001.test.dao.CountryDao" >
   <resultMap id="BaseResultMap" type="com.hqyj.springBoot2001.test.model.Country" >
     <id column="country_id" property="countryId" jdbcType="INTEGER" />
     <result column="country_name" property="countryName" jdbcType="VARCHAR" />
@@ -267,4 +267,12 @@
       date_created = #{dateCreated,jdbcType=TIMESTAMP}
     where country_id = #{countryId,jdbcType=INTEGER}
   </update>
+  
+  <!-- ############################自己的程序############################### -->
+  <select id="getCountryById2" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_country
+    where country_id = #{countryId,jdbcType=INTEGER}
+  </select>
 </mapper>

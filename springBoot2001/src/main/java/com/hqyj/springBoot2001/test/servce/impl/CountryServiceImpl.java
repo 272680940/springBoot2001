@@ -17,11 +17,21 @@ public class CountryServiceImpl implements CountryService {
 		Country country = countryDao.getCountryById(countryId);
 		return country;
 	}
+	
+	
+	/**
+	 *	通过mapper.xml文件查询
+	 */
+	@Override
+	public Country getCountryById2(int countryId) {
+		return countryDao.getCountryById2(countryId);
+	}
 
 	@Override
 	public Country getContryByCountryName(String countryName) {
 		Country country = countryDao.getContryByCountryName(countryName);
 		return country;
 	}
+
 
 }

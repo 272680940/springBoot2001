@@ -10,6 +10,8 @@ public class Result<T> {
 	private String message;
 	//将对象传到前端
 	private T object;
+	
+	
 	public int getStatus() {
 		return status;
 	}

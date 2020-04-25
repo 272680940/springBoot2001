@@ -2,6 +2,8 @@ package com.hqyj.springBoot2001.test.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class City {
     private Integer cityId;
 
@@ -16,7 +18,7 @@ public class City {
     private Integer population;
 
     private Date dateModified;
-
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;
 
     public Integer getCityId() {

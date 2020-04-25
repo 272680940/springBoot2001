@@ -16,6 +16,7 @@ public class CountryController {
 	private CountryService countryService ;
 	
 	/**
+	 * 	没有通过配置文件查询
 	 *	通过 countryId 查询国家
 	 * 	localhost/api/getCountryById/522
 	 */
@@ -24,6 +25,17 @@ public class CountryController {
 	public Country getCountryById(@PathVariable int countryId){
 		return countryService.getCountryById(countryId);
 	}
+	
+	/**
+	 * 通过countryMapper.xml文件查询
+	 * localhost/api/getCountryById2/522
+	 */
+	@RequestMapping("/getCountryById2/{countryId}")
+	public Country getCountryById2(@PathVariable int countryId){
+		return countryService.getCountryById2(countryId);
+	}
+	
+	
 	
 	
 	/**
@@ -35,4 +47,7 @@ public class CountryController {
 	public Country getContryByCountryName(@RequestParam String countryName) {
 		return countryService.getContryByCountryName(countryName);
 	}
+	
+	
+	
 }
