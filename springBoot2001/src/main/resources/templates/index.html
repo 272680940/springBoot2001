@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<TITLE>SpringDemo2001</TITLE>
+<META name="description" content="THORNBIRD.COM" />
+
+<!-- 引入js和css -->
+<script th:src="@{http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js}"></script>
+</head>
+<!-- 这个index.html相当于一个碎片组装器 -->
+<body>
+	<!-- 
+		替换fragments目录下的header.html
+		:: header 指定替换的标签，类似唯一标识
+	-->
+	<div th:replace="fragments/header :: header"></div>
+
+	<!-- body -->
+	<div th:if="${template}">
+		<div th:replace="${template}"></div>
+	</div>
+
+	<!-- 
+		替换fragments目录下的footer.html
+		:: header 指定替换的标签，类似唯一标识
+	 -->
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

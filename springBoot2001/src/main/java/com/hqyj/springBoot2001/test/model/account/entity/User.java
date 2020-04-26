@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 //添加注解【@Entity】，表示它是一个实体bean
 @Entity
 //指定表名称【@Table(name="表名")】
@@ -20,6 +22,7 @@ public class User {
 	private int userId;
 	private String userName;
 	private String password;
+	@JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createDate;
 
 	@Transient // 该注解修饰的属性不参与自动生成表里面
