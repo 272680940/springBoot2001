@@ -3,6 +3,7 @@ package com.hqyj.springBoot2001.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -26,12 +27,21 @@ public class UrlInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		LOGGER.debug("Post -------------------");
 
-		//获取路径
+		// 若是访问接口，不返回页面。modelAndView就为空，会报空指针异常
+		// 因此判断 modelAndView 返回值
+		if (modelAndView == null || modelAndView.getViewName().startsWith("redirect")) {
+			return;
+		}
+
+		// 获取路径
 		String uri = request.getServletPath();
-		//获取参数template
+		// 获取参数template
 		String template = (String) modelAndView.getModelMap().get("template");
-		//判断template是否为空:
-		if (template == null  || template == "") {
+		
+		// 判断template是否为空:
+		// 原代码：if (template == null || template == "") {
+		// Apache提供公共包commons.lang3，封装了字符串非空的方法，可替换此处代码
+		if (StringUtils.isBlank(template)) {
 			if (uri.startsWith("/")) {
 				uri = uri.substring(1);
 			}

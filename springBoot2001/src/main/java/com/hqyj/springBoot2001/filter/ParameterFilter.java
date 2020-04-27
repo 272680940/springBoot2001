@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,7 +54,9 @@ public class ParameterFilter implements Filter {
 			@Override
 			public String getParameter(String name) {
 				String value = httpRequest.getParameter(name);
-				if (value != null && value != "") {
+				// 原代码：if (value != null && value != "") {
+				// Apache提供公共包commons.lang3，封装了字符串非空的方法，可替换此处代码
+				if (StringUtils.isNoneBlank(value)) {
 					return value.replaceAll("fuck", "***");
 				}
 				return super.getParameter(name);
