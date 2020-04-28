@@ -36,7 +36,7 @@ public class ControllerAspect {
 	 *(..)表示参数不限
 	 * 注解【@Order】代表优先级，数字越小优先级越高
 	 */
-	@Pointcut("execution(public * com.hqyj.springBoot2001.test.*.controller.*.*(..))")
+	@Pointcut("execution(public * com.hqyj.springBoot2001.modules.*.controller.*.*(..))")
 	@Order(1)
 	public void  controllerPointCut() {}
 	
