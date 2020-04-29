@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hqyj.springBoot2001.test.dao.CityMapper" >
-  <resultMap id="BaseResultMap" type="com.hqyj.springBoot2001.test.model.City" >
+<mapper namespace="com.hqyj.springBoot2001.modules.test.dao.CityDao" >
+  <resultMap id="BaseResultMap" type="com.hqyj.springBoot2001.modules.test.entity.City" >
     <id column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="city_name" property="cityName" jdbcType="VARCHAR" />
     <result column="local_city_name" property="localCityName" jdbcType="VARCHAR" />
@@ -25,7 +25,7 @@
     delete from m_city
     where city_id = #{cityId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hqyj.springBoot2001.test.model.City" >
+  <insert id="insert" parameterType="com.hqyj.springBoot2001.modules.test.entity.City" >
     insert into m_city (city_id, city_name, local_city_name, 
       country_id, district, population, 
       date_modified, date_created)
@@ -33,7 +33,7 @@
       #{countryId,jdbcType=INTEGER}, #{district,jdbcType=VARCHAR}, #{population,jdbcType=INTEGER}, 
       #{dateModified,jdbcType=TIMESTAMP}, #{dateCreated,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.hqyj.springBoot2001.test.model.City" >
+  <insert id="insertSelective" parameterType="com.hqyj.springBoot2001.modules.test.entity.City" >
     insert into m_city
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="cityId != null" >
@@ -88,7 +88,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.springBoot2001.test.model.City" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.springBoot2001.modules.test.entity.City" >
     update m_city
     <set >
       <if test="cityName != null" >
@@ -115,7 +115,7 @@
     </set>
     where city_id = #{cityId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hqyj.springBoot2001.test.model.City" >
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.springBoot2001.modules.test.entity.City" >
     update m_city
     set city_name = #{cityName,jdbcType=VARCHAR},
       local_city_name = #{localCityName,jdbcType=VARCHAR},
