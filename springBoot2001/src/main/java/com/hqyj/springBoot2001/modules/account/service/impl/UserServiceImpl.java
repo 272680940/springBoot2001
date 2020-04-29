@@ -11,6 +11,7 @@ import com.hqyj.springBoot2001.modules.account.entity.User;
 import com.hqyj.springBoot2001.modules.account.service.UserService;
 import com.hqyj.springBoot2001.modules.common.vo.Result;
 import com.hqyj.springBoot2001.modules.common.vo.Result.ResultEnum;
+import com.hqyj.springBoot2001.modules.test.entity.City;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -55,7 +56,28 @@ public class UserServiceImpl implements UserService {
 		userDao.deleteUser(userId);
 		return result;
 	}
+
 	
-	
+	@Override
+	public Result<User> queryUserByUsernameAndPassword(String userName, String password) {
+		Result<User> result = new Result<>(ResultEnum.SUCCESS.status,"select success!");
+		userDao.queryUserByUsernameAndPassword(userName,password);
+		
+		return null;
+	}
+
+
+	@Override
+	public Result<User> queryUserByUsernameAndPassword2(User user) {
+		Result<User> result = new Result<>(ResultEnum.SUCCESS.status,"select success.");
+		try {
+			userDao.queryUserByUsernameAndPassword2(user.getUserName(), user.getPassword());
+			result.setObject(user);
+		} catch (Exception e) {
+			result.setStatus(ResultEnum.FAILD.status);
+			result.setMessage(e.getMessage());
+		}
+		return result;
+	}
 
 }

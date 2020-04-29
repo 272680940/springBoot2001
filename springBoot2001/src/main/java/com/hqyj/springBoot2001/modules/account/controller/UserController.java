@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hqyj.springBoot2001.modules.account.entity.User;
 import com.hqyj.springBoot2001.modules.account.service.UserService;
 import com.hqyj.springBoot2001.modules.common.vo.Result;
-
+import com.hqyj.springBoot2001.modules.test.entity.City;
 
 @RestController
 @RequestMapping("/api")
@@ -41,7 +42,7 @@ public class UserController {
 	 * 通过userId删除用户
 	 * localhost/api/deleteUserByUserId/3
 	 */
-	@DeleteMapping("/deleteUserByUserId/{userId}")
+	@DeleteMapping("/user/{userId}")
 	public Result<Object> deleteUserByUserId(@PathVariable int userId){
 		return userService.deleteUserByUserId(userId);
 	}
@@ -64,7 +65,7 @@ public class UserController {
 	 * 查询所有用户
 	 * localhost/api/queryAllUser
 	 */
-	@RequestMapping("/queryAllUser")
+	@RequestMapping("/users")
 	public List<User> queryAllUser(){
 		return userService.queryAllUser();
 	}
@@ -74,9 +75,17 @@ public class UserController {
 	 * 通过userId查询所有用户
 	 * localhost/api/queryUserByUserId/3
 	 */
-	@RequestMapping("/queryUserByUserId/{userId}")
+	@RequestMapping("/user/{userId}")
 	public List<User> queryUserByUserId(@PathVariable int userId){
 		return userService.queryUserByUserId(userId);
+	}
+	
+	/** 
+	 * 登录
+	 */
+	@RequestMapping("/login")
+	public Result<User> queryUserByUsernameAndPassword2(@RequestBody User user) {
+		return userService.queryUserByUsernameAndPassword2(user);
 	}
 	
 	

@@ -23,5 +23,11 @@ public interface UserService {
 	//通过userId查询
 	List<User> queryUserByUserId(int userId);
 
+	//查询用户名和密码
+	Result<User> queryUserByUsernameAndPassword(String userName, String password);
+
+	Result<User> queryUserByUsernameAndPassword2(User user);
+
+
 	
 }
